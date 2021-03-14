@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+encoding//resources/datebase.properties=UTF-8
+encoding//src/com/smbms/dao/MyBatisUtil.java=UTF-8
+encoding//test/com/smbms/test/UserMapperTest.java=UTF-8

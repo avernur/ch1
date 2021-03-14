@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指定命名空间， --> 
+<mapper namespace="com.smbms.dao.user.mapper.UserMapper">
+	<select id="count" resultType="int">
+		SELECT count(1) AS count FROM smbms_user_copy
+	</select>
+	<select id="all" resultType="com.smbms.pojo.User">
+		SELECT *  FROM smbms_user_copy 
+	</select>
+	
+	<select id="searchByName"  resultType="User" parameterType="String">
+		SELECT * FROM smbms_user WHERE userName LIKE CONCAT('%',#{userName1},'%')
+	</select>
+	<!--多条件查询时，考虑将查询条件封装成对象  -->
+	<select id="searchByMutiCondition"	resultType="User" parameterType="User">
+		SELECT * FROM smbms_user 
+		where userName like CONCAT('%',#{userName},'%') AND userRole= #{userRole}
+	</select>
+	<!-- 多条件查询时，不适合封装成对象的，考虑使用MAP集合，利用数据的KEY值进行查询 -->
+	<select id="searchByMap"  resultType="User" parameterType="Map">
+		SELECT * FROM smbms_user 
+		WHERE userName LIKE CONCAT('%',#{userName},'%') AND userRole= #{userRoles}
+	</select>
+	<!-- 多条件查询时，采用多条件入参的，不需要设置parameterType,使用索引方式 -->
+	<select id="searchByMuti1"	resultType="User">
+		SELECT * FROM smbms_user 
+		WHERE userName LIKE CONCAT('%',#{param1},'%') AND userRole= #{param2}
+	</select>
+	<!-- 多条件查询时，采用多条件入参的，不需要设置parameterType,使用注解方式 -->
+	<select id="searchByMuti2"	resultType="User">
+		SELECT * FROM smbms_user 
+		WHERE userName LIKE CONCAT('%',#{name},'%') AND userRole= #{role}
+	</select>
+	<!-- 使用resultMap自定义结果映射规则,进行表的关联查询 -->
+	<select id="searchByUser" resultMap="userlist" parameterType="User">
+		SELECT u.* ,r.roleName FROM smbms_user u,smbms_role r
+		WHERE userName LIKE CONCAT('%',#{userName},'%') 
+		AND r.id = u.userRole AND u.userRole = #{userRole}
+	</select>
+	<resultMap type="User" id="userlist">
+		<result property="id" column="id"/>
+		<result property="userCode" column="userCode"/>
+		<result property="userName" column="userName"/>
+		<result property="phone" column="phone"/>
+		<result property="birthday" column="birthday"/>
+		<result property="gender" column="gender"/>
+		<result property="userRole" column="userRole"/>
+		<result property="userRoleName" column="roleName"/>	
+	</resultMap>
+	
+</mapper>
