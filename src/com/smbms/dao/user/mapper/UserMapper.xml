@@ -61,6 +61,13 @@
 		UPDATE smbms_user SET userPassword = #{userPassword}
 		WHERE id = #{id}
 	</update>
+	<!-- 删除操作，根据用户ID删除用户表上某一行数据,参数同其他，返回INT类型 -->
+	<delete id="deleteUserById"	parameterType="int">
+		DELETE FROM smbms_user
+		WHERE id= #{id}
+	</delete>
+	
+	<!--关联映射一对一  -->
 	
 	
 	<resultMap type="User" id="userlist">

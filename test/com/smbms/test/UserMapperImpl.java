@@ -66,7 +66,9 @@ public class UserMapperImpl {
 			user.setId(20);
 			//count = session.getMapper(UserMapper.class).addUser(user);	
 			//count = session.getMapper(UserMapper.class).modifyUser(user);	
-			count = session.getMapper(UserMapper.class).modifyPassword(20, "1111111");
+			int id = 17;
+			//count = session.getMapper(UserMapper.class).modifyPassword(20, "1111111");
+			count = session.getMapper(UserMapper.class).deleteUserById(id);
 			
 			//int i= 20/0;
 			//提交事务

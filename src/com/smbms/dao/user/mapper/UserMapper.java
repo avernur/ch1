@@ -21,4 +21,5 @@ public interface UserMapper {
 	public int addUser(User user);
 	public int modifyUser(User user);
 	public int modifyPassword(@Param("id")int id, @Param("userPassword")String password);
+	public int deleteUserById(int id);
 }
