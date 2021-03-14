@@ -10,6 +10,7 @@
 		<setting name="logImpl" value="LOG4J"/>
 		<setting name="autoMappingBehavior" value="NONE"/>
 	</settings>
+	<!-- 扫描包的类，使用别称 -->
 	<typeAliases>
 		<package name="com.smbms.pojo"/>
 	</typeAliases>

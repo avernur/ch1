@@ -22,7 +22,9 @@ public class MyBatisUtil {
 		}
 	}
 	public static SqlSession createSqlSession() {
+		//默认没开启事务控制
 		return sessionFactory.openSession();
+//		return sessionFactory.openSession(false);
 	}
 	public static void closeSqlSession(SqlSession session) {
 		if (session != null) {

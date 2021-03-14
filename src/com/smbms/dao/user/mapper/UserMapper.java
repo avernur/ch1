@@ -18,4 +18,7 @@ public interface UserMapper {
 									@Param(value = "role") int role);
 	
 	public List<User> searchByUser(User user);
+	public int addUser(User user);
+	public int modifyUser(User user);
+	public int modifyPassword(@Param("id")int id, @Param("userPassword")String password);
 }
